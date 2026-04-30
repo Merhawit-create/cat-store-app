@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Store</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+    <h1>Cat Store</h1>
+    <p>Find your favorite cat</p>
+</header>
+
+<main>
+    <section class="controls">
+        <input type="text" id="searchInput" placeholder="Search cat breed..." />
+    </section>
+
+    <section id="catList" class="cat-list"></section>
+
+    <section class="pagination">
+        <button id="prevBtn">Previous</button>
+        <span id="pageInfo"></span>
+        <button id="nextBtn">Next</button>
+    </section>
+
+    <section class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cartList"></ul>
+    </section>
+
+    <section class="order-form">
+        <h2>Order</h2>
+        <form id="orderForm">
+            <input type="text" id="name" placeholder="Name" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <button type="submit">Submit Order</button>
+        </form>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

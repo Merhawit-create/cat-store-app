@@ -11,7 +11,7 @@ let filteredCats = [];
 let cart = [];
 
 let currentPage = 1;
-const catsPerPage = 6;
+const catsPerPage = 10;
 
 async function fetchCats() {
     try {
@@ -48,11 +48,12 @@ function renderCats() {
         card.classList.add("cat-card");
         const img = cat.reference_image_id
             ? `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`
-            : "";
+            : "https://placehold.co/300x200?text=No+Image";
         card.innerHTML = `
       <h3>${cat.name}</h3>
       <p><strong>Origin:</strong> ${cat.origin || "Unknown"}</p>
-       <img src="${img}" width="100">
+      
+        <img class="cat-image" src="${img}" alt="${cat.name}" onerror="this.src='https://placehold.co/300x200?text=No+Image'" >
       <p><strong>Temperament:</strong> ${cat.temperament || "No information"}</p>
       <p>${cat.description ? cat.description.substring(0, 120) + "..." : "No description available."}</p>
       <button onclick="addToCart('${cat.id}')">Add to cart</button>

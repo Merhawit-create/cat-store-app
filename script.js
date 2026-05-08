@@ -46,10 +46,13 @@ function renderCats() {
     catsToShow.forEach(cat => {
         const card = document.createElement("article");
         card.classList.add("cat-card");
-
+        const img = cat.reference_image_id
+            ? `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`
+            : "";
         card.innerHTML = `
       <h3>${cat.name}</h3>
       <p><strong>Origin:</strong> ${cat.origin || "Unknown"}</p>
+       <img src="${img}" width="100">
       <p><strong>Temperament:</strong> ${cat.temperament || "No information"}</p>
       <p>${cat.description ? cat.description.substring(0, 120) + "..." : "No description available."}</p>
       <button onclick="addToCart('${cat.id}')">Add to cart</button>

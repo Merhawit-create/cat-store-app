@@ -13,6 +13,7 @@ let cart = [];
 let currentPage = 1;
 const catsPerPage = 10;
 
+// Fetch cats from API
 async function fetchCats() {
     try {
         const response = await fetch("https://api.thecatapi.com/v1/breeds?limit=30");
@@ -30,6 +31,8 @@ async function fetchCats() {
     }
 }
 
+
+// Render cats
 function renderCats() {
     catList.innerHTML = "";
 
@@ -68,7 +71,7 @@ function renderCats() {
 
     updatePagination();
 }
-
+// Pagination
 function updatePagination() {
     const totalPages = Math.ceil(filteredCats.length / catsPerPage);
 
@@ -77,44 +80,64 @@ function updatePagination() {
     prevBtn.disabled = currentPage === 1;
     nextBtn.disabled = currentPage === totalPages || totalPages === 0;
 }
+// Search cats
+if (searchInput) {
+    searchInput.addEventListener("input", () => {
+        const searchText = searchInput.value.toLowerCase();
 
-searchInput.addEventListener("input", () => {
-    const searchText = searchInput.value.toLowerCase();
+        filteredCats = cats.filter(cat =>
+            cat.name.toLowerCase().includes(searchText)
+        );
 
-    filteredCats = cats.filter(cat =>
-        cat.name.toLowerCase().includes(searchText)
-    );
-
-    currentPage = 1;
-    renderCats();
-});
-
-prevBtn.addEventListener("click", () => {
-    if (currentPage > 1) {
-        currentPage--;
+        currentPage = 1;
         renderCats();
-    }
-});
+    });
+}
+// Previous page
+if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderCats();
+        }
+    });
+}
 
-nextBtn.addEventListener("click", () => {
-    const totalPages = Math.ceil(filteredCats.length / catsPerPage);
+// Next page
+if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+        const totalPages = Math.ceil(filteredCats.length / catsPerPage);
 
-    if (currentPage < totalPages) {
-        currentPage++;
-        renderCats();
-    }
-});
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderCats();
+        }
+    });
+}
 
+// Add cat to shopping cart
 function addToCart(catId) {
     const cat = cats.find(cat => cat.id === catId);
-
+    
     if (cat) {
+        cart = JSON.parse(localStorage.getItem("cart")) || [];
         cart.push(cat);
-        renderCart();
+        // Save cart in local storage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert(`${cat.name} added to cart`);
     }
 }
 
+// Render shopping cart
 function renderCart() {
+
+    if (!cartList) return;
+
+    // Load cart from local storage
+    cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
     cartList.innerHTML = "";
 
     cart.forEach((cat, index) => {
@@ -129,24 +152,59 @@ function renderCart() {
     });
 }
 
+// Remove cat from shopping cart
 function removeFromCart(index) {
     cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
 }
 
-orderForm.addEventListener("submit", event => {
-    event.preventDefault();
 
-    if (cart.length === 0) {
-        alert("The shopping cart is empty.");
-        return;
-    }
+// Submit order form
+if (orderForm) {
 
-    alert("Order submitted successfully!");
+    orderForm.addEventListener("submit", event => {
 
-    cart = [];
+        event.preventDefault();
+        
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const address = document.getElementById("address").value;
+        
+        
+        cart = JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+        if (cart.length === 0) {
+
+            alert("The shopping cart is empty.");
+          return;
+        }
+
+        const catNames = cart.map(cat => cat.name).join(", ");
+
+        alert(
+            `Order confirmed!\n\nName: ${name}\nEmail: ${email}\nAddress: ${address}\nCats: ${catNames}`
+        );
+        
+        // Empty cart
+        cart = [];
+
+        // Remove cart from local storage
+        localStorage.removeItem("cart");
+
+        renderCart();
+
+        orderForm.reset() 
+    });
+}
+
+// Run only on cats page
+if (catList) {
+    fetchCats();
+}
+// Run only on shopping cart page
+if (cartList) {
     renderCart();
-    orderForm.reset();
-});
-
-fetchCats();
+}

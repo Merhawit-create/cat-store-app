@@ -1,41 +1,26 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cat Store</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
     <h1>Cat Store</h1>
-   
+
     <nav>
-        <a href="index.html">Home</a> 
+        <a href="index.html">Home</a>
         <a href="cats.html">Cats</a>
         <a href="shoppingcart.html">Cart</a>
         <a href="about.html">About</a>
     </nav>
-
 </header>
 
 <main>
-    <section class="controls">
-        <input type="text" id="searchInput" placeholder="Search cat breed..." />
-    </section>
 
-    <section id="catList" class="cat-list"></section>
-
-    <section class="pagination">
-        <button id="prevBtn">Previous</button>
-        <span id="pageInfo"></span>
-        <button id="nextBtn">Next</button>
-    </section> 
-
-    
-    
-<!--
     <section class="cart">
         <h2>Shopping Cart</h2>
         <ul id="cartList"></ul>
@@ -43,14 +28,19 @@
 
     <section class="order-form">
         <h2>Order</h2>
+
         <form id="orderForm">
             <input type="text" id="name" placeholder="Name" required />
             <input type="email" id="email" placeholder="Email" required />
+            <input type="text" id="address" placeholder="Delivery address" required />
+
             <button type="submit">Submit Order</button>
         </form>
-    </section> -->
+    </section>
+
 </main>
 
 <script src="script.js"></script>
+
 </body>
 </html>

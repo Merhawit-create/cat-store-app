@@ -53,7 +53,11 @@ function renderCats() {
       <h3>${cat.name}</h3>
       <p><strong>Origin:</strong> ${cat.origin || "Unknown"}</p>
       
-        <img class="cat-image" src="${img}" alt="${cat.name}" onerror="this.src='https://placehold.co/300x200?text=No+Image'" >
+        <img
+         class="cat-image"
+         src="${img}" alt="${cat.name}"
+          onerror="this.src='https://placehold.co/300x200?text=No+Image'" 
+          >
       <p><strong>Temperament:</strong> ${cat.temperament || "No information"}</p>
       <p>${cat.description ? cat.description.substring(0, 120) + "..." : "No description available."}</p>
       <button onclick="addToCart('${cat.id}')">Add to cart</button>

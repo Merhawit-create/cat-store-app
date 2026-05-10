@@ -9,12 +9,20 @@ body {
     color: #222;
 }
 
+html {
+    overflow-y: scroll;
+}
 header {
     background-color: #222;
     color: white;
     text-align: center;
     padding: 30px 20px;
+  
+    align-items: center;
+    justify-content: center;
+    height: 160px;
 }
+
 
 header h1 {
     margin: 0;

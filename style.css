@@ -7,39 +7,51 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #222;
+    line-height: 1.6;
 }
 
 html {
     overflow-y: scroll;
 }
+/* Same header on all pages */
 header {
     background-color: #222;
     color: white;
     text-align: center;
     padding: 30px 20px;
-  
-    align-items: center;
-    justify-content: center;
     height: 160px;
 }
-
 
 header h1 {
     margin: 0;
     font-size: 36px;
 }
 
-header p {
-    margin-top: 10px;
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
     font-size: 18px;
 }
 
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Main content changes per page */
 main {
     width: 80%;
     max-width: 900px;
     margin: 30px auto;
 }
-
+/* Search input */
 .controls {
     text-align: center;
     margin-bottom: 25px;
@@ -54,12 +66,13 @@ main {
     border-radius: 8px;
 }
 
+/* Cat grid */
 .cat-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
 }
-
+/* Cat card */
 .cat-card {
     background-color: white;
     padding: 20px;
@@ -77,6 +90,7 @@ main {
     line-height: 1.5;
 }
 
+/* Buttons */
 button {
     padding: 10px 15px;
     border: none;
@@ -97,7 +111,7 @@ button:disabled {
 .cat-card button {
     margin-top: auto;
 }
-
+/* Pagination */
 .pagination {
     margin: 30px 0;
     text-align: center;
@@ -107,6 +121,7 @@ button:disabled {
     margin: 0 15px;
     font-weight: bold;
 }
+/* Cat image */
 .cat-image {
    width: 120px;
     height: 120px;
@@ -114,7 +129,7 @@ button:disabled {
     background-color: #f4f4f4;
     border-radius: 8px;
 }
-
+/* Cart and order form */
 .cart,
 .order-form {
     background-color: white;
@@ -141,6 +156,8 @@ button:disabled {
     border: 1px solid #ccc;
     border-radius: 8px;
 }
+
+
 
 /* Tablet */
 @media (max-width: 900px) {
